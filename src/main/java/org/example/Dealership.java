@@ -7,7 +7,7 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-    private static final ArrayList<Vehicle> inventory = new ArrayList<>();
+    private final ArrayList<Vehicle> inventory = new ArrayList<>();
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
@@ -107,7 +107,7 @@ public class Dealership {
     }
 
 
-    public static void addVehicle(Vehicle vehicle) {
+    public void addVehicle(Vehicle vehicle) {
         inventory.add(vehicle);
     }
 
