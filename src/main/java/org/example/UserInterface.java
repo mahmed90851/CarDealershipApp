@@ -187,24 +187,17 @@ public class UserInterface {
     }
 
     public void processRemoveVehicleRequest() {
-        System.out.print("Enter the VIN of the vehicle to remove: ");
+        Vehicle v = null;
+        System.out.print("Enter vin of vehicle you would like to remove: ");
         int vin = scanner.nextInt();
-
-        List<Vehicle> vehicles = dealership.getAllVehicles();
-        Vehicle foundVehicle = null;
-
-        for (Vehicle vehicle : vehicles) {
-            if (vehicle.getVin() == vin) {
-                foundVehicle = vehicle;
+        for(Vehicle i : dealership.getAllVehicles()){
+            if(i.getVin() == vin) {
+                System.out.println("Vehicle has been removed");
+                v = i;
                 break;
             }
         }
-
-        if (foundVehicle != null) {
-            dealership.removeVehicle(foundVehicle);
-            System.out.println("Vehicle removed successfully.\n");
-        } else {
-            System.out.println("Vehicle with VIN " + vin + " not found.\n");
-        }
+        dealership.removeVehicle(v);
+        fileManager.saveDealership(dealership);
     }
 }
