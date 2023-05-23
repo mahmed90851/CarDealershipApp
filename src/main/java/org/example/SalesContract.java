@@ -1,34 +1,24 @@
 package org.example;
 
 public class SalesContract extends Contract {
-    private double salesTaxAmount;
-    private double recordingFee;
+    private final double salesTaxRate = 0.05;
+    private final double recordingFee = 100.00;
     private double processingFee;
     private boolean financeOption;
 
     public SalesContract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold,
-                         double salesTaxAmount, double recordingFee, double processingFee, boolean financeOption) {
+                         double v, double parseDouble, double aDouble, boolean financeOption) {
         super(contractDate, customerName, customerEmail, vehicleSold);
-        this.salesTaxAmount = salesTaxAmount;
-        this.recordingFee = recordingFee;
-        this.processingFee = processingFee;
+        this.processingFee = (vehicleSold.getPrice() < 10000) ? 295.00 : 495.00;
         this.financeOption = financeOption;
     }
 
     public double getSalesTaxAmount() {
-        return salesTaxAmount;
-    }
-
-    public void setSalesTaxAmount(double salesTaxAmount) {
-        this.salesTaxAmount = salesTaxAmount;
+        return getVehicleSold().getPrice() * salesTaxRate;
     }
 
     public double getRecordingFee() {
         return recordingFee;
-    }
-
-    public void setRecordingFee(double recordingFee) {
-        this.recordingFee = recordingFee;
     }
 
     public double getProcessingFee() {
@@ -50,7 +40,7 @@ public class SalesContract extends Contract {
     @Override
     public double getTotalPrice() {
         double vehiclePrice = getVehicleSold().getPrice();
-        double totalPrice = vehiclePrice + salesTaxAmount + recordingFee + processingFee;
+        double totalPrice = vehiclePrice + getSalesTaxAmount() + recordingFee + processingFee;
         return totalPrice;
     }
 
@@ -102,6 +92,4 @@ public class SalesContract extends Contract {
 
         return builder.toString();
     }
-
 }
-

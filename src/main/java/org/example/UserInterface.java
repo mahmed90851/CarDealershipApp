@@ -1,5 +1,7 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -216,8 +218,9 @@ public class UserInterface {
 
     public void createSalesContract(Vehicle vehicle) {
         System.out.println("Creating Sales Contract...");
-        System.out.print("Enter contract date (YYYYMMDD): ");
-        String contractDate = scanner.next().trim();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String contractDate = currentDate.format(dateFormatter);
         System.out.print("Enter customer name: ");
         String customerName = scanner.next().trim();
         System.out.print("Enter customer email: ");
@@ -246,8 +249,9 @@ public class UserInterface {
 
     public void createLeaseContract(Vehicle vehicle) {
         System.out.println("Creating Lease Contract...");
-        System.out.print("Enter contract date (YYYYMMDD): ");
-        String contractDate = scanner.next().trim();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String contractDate = currentDate.format(dateFormatter);
         System.out.print("Enter customer name: ");
         String customerName = scanner.next().trim();
         System.out.print("Enter customer email: ");
