@@ -229,7 +229,7 @@ public class UserInterface {
         double recordingFee = 100.00; // Set the recording fee to $100
         double processingFee = (vehicle.getPrice() < 10000) ? 295.00 : 495.00; // Set the processing fee based on vehicle price
         System.out.print("Enter finance option (yes/no): ");
-        boolean financeOption = scanner.next().equalsIgnoreCase("yes");
+        boolean financeOption = Boolean.parseBoolean(scanner.next());
 
         // Format prices and costs to display only two decimal places
         String formattedSalesTaxAmount = String.format("%.2f", salesTaxAmount);
